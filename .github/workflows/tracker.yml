@@ -3,7 +3,7 @@ name: TikTok Tracker Automático
 on:
   schedule:
     # Se ejecuta automáticamente todos los días a las 12:00 UTC
-    - cron: '0 12 * * *'
+    - cron: '30 4 * * *'
   workflow_dispatch: # Permite ejecutarlo manualmente cuando quieras
 
 jobs:
