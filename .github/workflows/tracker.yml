@@ -1,0 +1,36 @@
+name: TikTok Tracker Automático
+
+on:
+  schedule:
+    # Se ejecuta automáticamente todos los días a las 12:00 UTC
+    - cron: '0 12 * * *'
+  workflow_dispatch: # Permite ejecutarlo manualmente cuando quieras
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Descargar repositorio
+      uses: actions/checkout@v3
+
+    - name: Configurar Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Instalar librerías
+      run: pip install -r requirements.txt
+
+    - name: Ejecutar aplicativo
+      env:
+        APIFY_TOKEN: ${{ secrets.APIFY_TOKEN }}
+      run: python app.py
+
+    - name: Guardar base de datos actualizada
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add tiktok_tracker.db
+        git commit -m "Actualización automática de vistas" || exit 0
+        git push
