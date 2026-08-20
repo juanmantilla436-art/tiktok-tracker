@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reporte TikTok - @picante.clips</title>
+    <style>
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --accent-pink: #ff0050;
+            --accent-cyan: #00f2fe;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: #334155;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-main); padding: 2rem 1rem; min-height: 100vh; }
+        .container { max-width: 850px; margin: 0 auto; }
+        .header { text-align: center; margin-bottom: 2.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); }
+        .header h1 { font-size: 2rem; font-weight: 800; background: linear-gradient(135deg, var(--accent-pink), var(--accent-cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 0.5rem; }
+        .header .subtitle { color: var(--text-muted); font-size: 0.95rem; }
+        .account-badge { display: inline-block; background: rgba(255, 0, 80, 0.1); color: var(--accent-pink); border: 1px solid rgba(255, 0, 80, 0.3); padding: 0.3rem 0.9rem; border-radius: 20px; font-weight: 600; margin-top: 0.8rem; font-size: 0.9rem; }
+        .grid { display: flex; flex-direction: column; gap: 1.5rem; }
+        .card { background-color: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px; padding: 1.5rem; box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3); }
+        .card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+        .rank-tag { font-weight: 800; font-size: 1.15rem; }
+        .rank-1 { color: #f59e0b; }
+        .rank-2 { color: #cbd5e1; }
+        .rank-3 { color: #b45309; }
+        .er-badge { background: linear-gradient(135deg, #2563eb, #1d4ed8); color: #ffffff; font-weight: 700; font-size: 0.95rem; padding: 0.4rem 0.8rem; border-radius: 10px; }
+        .video-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 1.2rem; color: #f1f5f9; line-height: 1.4; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 0.8rem; margin-bottom: 1.2rem; background: rgba(15, 23, 42, 0.6); padding: 1rem; border-radius: 12px; }
+        .stat-item { display: flex; flex-direction: column; }
+        .stat-label { font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.2rem; }
+        .stat-value { font-size: 1.05rem; font-weight: 700; color: #ffffff; }
+        .card-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 0.8rem; border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.85rem; color: var(--text-muted); }
+        .btn-link { display: inline-flex; align-items: center; background-color: var(--accent-pink); color: white; text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; font-size: 0.85rem; }
+        .empty-state { text-align: center; padding: 3rem 1rem; background-color: var(--card-bg); border-radius: 16px; border: 1px solid var(--border-color); color: var(--text-muted); }
+        @media (max-width: 600px) { body { padding: 1rem 0.5rem; } .card { padding: 1rem; } .stats-grid { grid-template-columns: 1fr 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>TikTok Performance Dashboard</h1>
+            <p class="subtitle">Reporte de Rendimiento - 2026-08-20</p>
+            <div class="account-badge">@picante.clips</div>
+        </div>
+        <div class="grid">
+            
+            <div class="card">
+                <div class="card-header">
+                    <span class="rank-tag rank-1">🥇 #1 Top Engagement</span>
+                    <span class="er-badge">17.36% ER</span>
+                </div>
+                <div class="video-title">HOLA, ¿QUERÉS SALIR CONMIGO? #lacobra #lacobraaa #davo #davo</div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Vistas</span>
+                        <span class="stat-value">516,300</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Me Gusta</span>
+                        <span class="stat-value">60,000</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Comentarios</span>
+                        <span class="stat-value">1,207</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Compartidos</span>
+                        <span class="stat-value">28,400</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span>Subido: 2026-08-20 01:26:12 UTC</span>
+                    <a href="https://www.tiktok.com/@picante.clips/video/7675918980279700756" class="btn-link" target="_blank">Ver en TikTok ↗</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <span class="rank-tag rank-2">🥈 #2 Top Engagement</span>
+                    <span class="er-badge">15.39% ER</span>
+                </div>
+                <div class="video-title">JAJAJA #lacobra #lacobraaa #davo #davooxeneize #argentina #k</div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Vistas</span>
+                        <span class="stat-value">416,400</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Me Gusta</span>
+                        <span class="stat-value">46,700</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Comentarios</span>
+                        <span class="stat-value">495</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Compartidos</span>
+                        <span class="stat-value">16,900</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span>Subido: 2026-08-20 01:54:05 UTC</span>
+                    <a href="https://www.tiktok.com/@picante.clips/video/7675926159170784532" class="btn-link" target="_blank">Ver en TikTok ↗</a>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <span class="rank-tag rank-3">🥉 #3 Top Engagement</span>
+                    <span class="er-badge">14.63% ER</span>
+                </div>
+                <div class="video-title">EL CHAT NO PERDONA LA NUEVA APARIENCIA DEL NINE... #lacobra </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Vistas</span>
+                        <span class="stat-value">226,300</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Me Gusta</span>
+                        <span class="stat-value">28,200</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Comentarios</span>
+                        <span class="stat-value">193</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Compartidos</span>
+                        <span class="stat-value">4,721</span>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span>Subido: 2026-08-20 00:51:06 UTC</span>
+                    <a href="https://www.tiktok.com/@picante.clips/video/7675909920897748244" class="btn-link" target="_blank">Ver en TikTok ↗</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>
