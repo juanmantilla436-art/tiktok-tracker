@@ -12,7 +12,7 @@ APIFY_TOKEN = os.environ.get("APIFY_TOKEN")
 client = ApifyClient(APIFY_TOKEN)
 
 def generate_html_report(username, top_videos, date_str):
-    """Genera una página HTML visual con diseño Dashboard moderno."""
+    """Genera una página HTML visual con diseño Dashboard moderno y botón de descarga."""
     os.makedirs("reports", exist_ok=True)
     filename_date = f"reports/reporte_{date_str}.html"
     filename_index = "index.html"
@@ -32,6 +32,9 @@ def generate_html_report(username, top_videos, date_str):
         for idx, vid in enumerate(top_videos):
             medal = medals[idx] if idx < 3 else f"#{idx+1}"
             rank_class = rank_classes[idx] if idx < 3 else ""
+            
+            # Enlace para descargar el video sin marca de agua
+            download_url = f"https://tikwm.com/video/media/play/{vid['id']}.mp4"
             
             cards_html += f"""
             <div class="card">
@@ -60,7 +63,10 @@ def generate_html_report(username, top_videos, date_str):
                 </div>
                 <div class="card-footer">
                     <span>Subido: {vid['created_at']}</span>
-                    <a href="{vid['url']}" class="btn-link" target="_blank">Ver en TikTok ↗</a>
+                    <div class="actions-group">
+                        <a href="{download_url}" class="btn-download" target="_blank" download="tiktok_{vid['id']}.mp4">⬇️ Descargar MP4</a>
+                        <a href="{vid['url']}" class="btn-link" target="_blank">Ver en TikTok ↗</a>
+                    </div>
                 </div>
             </div>
             """
@@ -77,6 +83,7 @@ def generate_html_report(username, top_videos, date_str):
             --card-bg: #1e293b;
             --accent-pink: #ff0050;
             --accent-cyan: #00f2fe;
+            --accent-green: #10b981;
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --border-color: #334155;
@@ -101,10 +108,13 @@ def generate_html_report(username, top_videos, date_str):
         .stat-item {{ display: flex; flex-direction: column; }}
         .stat-label {{ font-size: 0.75rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 0.2rem; }}
         .stat-value {{ font-size: 1.05rem; font-weight: 700; color: #ffffff; }}
-        .card-footer {{ display: flex; justify-content: space-between; align-items: center; padding-top: 0.8rem; border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.85rem; color: var(--text-muted); }}
-        .btn-link {{ display: inline-flex; align-items: center; background-color: var(--accent-pink); color: white; text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; font-weight: 600; font-size: 0.85rem; }}
+        .card-footer {{ display: flex; justify-content: space-between; align-items: center; padding-top: 0.8rem; border-top: 1px solid rgba(255, 255, 255, 0.05); font-size: 0.85rem; color: var(--text-muted); flex-wrap: wrap; gap: 0.8rem; }}
+        .actions-group {{ display: flex; gap: 0.6rem; align-items: center; }}
+        .btn-link {{ display: inline-flex; align-items: center; background-color: var(--accent-pink); color: white; text-decoration: none; padding: 0.5rem 0.9rem; border-radius: 8px; font-weight: 600; font-size: 0.85rem; }}
+        .btn-download {{ display: inline-flex; align-items: center; background-color: rgba(16, 185, 129, 0.15); color: var(--accent-green); border: 1px solid rgba(16, 185, 129, 0.4); text-decoration: none; padding: 0.5rem 0.9rem; border-radius: 8px; font-weight: 600; font-size: 0.85rem; transition: all 0.2s; }}
+        .btn-download:hover {{ background-color: var(--accent-green); color: #ffffff; }}
         .empty-state {{ text-align: center; padding: 3rem 1rem; background-color: var(--card-bg); border-radius: 16px; border: 1px solid var(--border-color); color: var(--text-muted); }}
-        @media (max-width: 600px) {{ body {{ padding: 1rem 0.5rem; }} .card {{ padding: 1rem; }} .stats-grid {{ grid-template-columns: 1fr 1fr; }} }}
+        @media (max-width: 600px) {{ body {{ padding: 1rem 0.5rem; }} .card {{ padding: 1rem; }} .stats-grid {{ grid-template-columns: 1fr 1fr; }} .card-footer {{ flex-direction: column; align-items: flex-start; }} .actions-group {{ width: 100%; justify-content: space-between; }} }}
     </style>
 </head>
 <body>
@@ -129,7 +139,7 @@ def generate_html_report(username, top_videos, date_str):
     with open(filename_index, "w", encoding="utf-8") as f:
         f.write(html_template)
     
-    print(f" Reporte generado exitosamente.")
+    print(f"Reporte generado exitosamente.")
 
 def get_top3_engagement_24h(username):
     print(f"Obteniendo videos de @{username}...")
