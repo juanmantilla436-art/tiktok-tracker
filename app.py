@@ -6,7 +6,7 @@ import pandas as pd
 
 # CONFIGURACIÓN
 # Cambia 'el_hormiguero' por la cuenta de TikTok que quieras monitorear (sin el @)
-TARGET_USER = "el_hormiguero" 
+TARGET_USER = "picante.clips" 
 DB_NAME = "tiktok_tracker.db"
 
 # Obtiene la clave de forma segura
