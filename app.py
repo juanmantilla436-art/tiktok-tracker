@@ -1,4 +1,5 @@
 import os
+import shutil
 from datetime import datetime, timedelta, timezone
 from apify_client import ApifyClient
 
@@ -13,7 +14,8 @@ client = ApifyClient(APIFY_TOKEN)
 def generate_html_report(username, top_videos, date_str):
     """Genera una página HTML visual con diseño Dashboard moderno."""
     os.makedirs("reports", exist_ok=True)
-    filename = f"reports/reporte_{date_str}.html"
+    filename_date = f"reports/reporte_{date_str}.html"
+    filename_index = "index.html"
 
     cards_html = ""
     medals = ["🥇 #1", "🥈 #2", "🥉 #3"]
@@ -109,7 +111,7 @@ def generate_html_report(username, top_videos, date_str):
     <div class="container">
         <div class="header">
             <h1>TikTok Performance Dashboard</h1>
-            <p class="subtitle">Reporte de Rendimiento - {date_str}</p>
+            <p class="subtitle">Última actualización: {date_str}</p>
             <div class="account-badge">@{username}</div>
         </div>
         <div class="grid">
@@ -119,10 +121,15 @@ def generate_html_report(username, top_videos, date_str):
 </body>
 </html>"""
 
-    with open(filename, "w", encoding="utf-8") as f:
+    # Guardar reporte histórico con fecha
+    with open(filename_date, "w", encoding="utf-8") as f:
         f.write(html_template)
     
-    print(f" Reporte HTML guardado exitosamente en: {filename}")
+    # Guardar como index.html para la portada de GitHub Pages
+    with open(filename_index, "w", encoding="utf-8") as f:
+        f.write(html_template)
+    
+    print(f" Reporte generado exitosamente.")
 
 def get_top3_engagement_24h(username):
     print(f"Obteniendo videos de @{username}...")
@@ -171,7 +178,6 @@ def get_top3_engagement_24h(username):
     videos_sorted = sorted(videos, key=lambda x: x['engagement_rate'], reverse=True)
     top_3_videos = videos_sorted[:3]
 
-    # Generar el archivo HTML
     generate_html_report(username, top_3_videos, today_str)
 
 if __name__ == "__main__":
