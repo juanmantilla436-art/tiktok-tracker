@@ -34,7 +34,7 @@ def generate_html_report(username, top_videos, date_str):
             rank_class = rank_classes[idx] if idx < 3 else ""
             
             # Enlace de descarga directa usando el servicio TikWM por redirección limpia
-            download_url = f"https://www.tikwm.com/video/media/play/{vid['id']}.mp4"
+            download_url = f"https://savetik.co/es?q={vid['url']}"
             # Enlace alternativo rápido en caso de que el navegador bloquee descargas directas
             downloader_web = f"https://ssstik.io/es"
 
@@ -66,7 +66,7 @@ def generate_html_report(username, top_videos, date_str):
                 <div class="card-footer">
                     <span>Subido: {vid['created_at']}</span>
                     <div class="actions-group">
-                        <a href="{download_url}" class="btn-download" target="_blank" rel="noopener noreferrer">⬇️ Descargar MP4</a>
+                        <a href="{download_url}" class="btn-download" target="_blank" rel="noopener noreferrer">⬇️ Descargar MP4 sin marca</a>
                         <a href="{vid['url']}" class="btn-link" target="_blank">Ver en TikTok ↗</a>
                     </div>
                 </div>
