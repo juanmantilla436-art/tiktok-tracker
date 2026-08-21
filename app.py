@@ -12,7 +12,7 @@ APIFY_TOKEN = os.environ.get("APIFY_TOKEN")
 client = ApifyClient(APIFY_TOKEN)
 
 def generate_html_report(username, top_videos, date_str):
-    """Genera una página HTML visual con diseño Dashboard moderno y botón de descarga."""
+    """Genera una página HTML visual con diseño Dashboard moderno y descarga directa."""
     os.makedirs("reports", exist_ok=True)
     filename_date = f"reports/reporte_{date_str}.html"
     filename_index = "index.html"
@@ -33,9 +33,11 @@ def generate_html_report(username, top_videos, date_str):
             medal = medals[idx] if idx < 3 else f"#{idx+1}"
             rank_class = rank_classes[idx] if idx < 3 else ""
             
-            # Enlace para descargar el video sin marca de agua
-            download_url = f"https://tikwm.com/video/media/play/{vid['id']}.mp4"
-            
+            # Enlace de descarga directa usando el servicio TikWM por redirección limpia
+            download_url = f"https://www.tikwm.com/video/media/play/{vid['id']}.mp4"
+            # Enlace alternativo rápido en caso de que el navegador bloquee descargas directas
+            downloader_web = f"https://ssstik.io/es"
+
             cards_html += f"""
             <div class="card">
                 <div class="card-header">
@@ -64,7 +66,7 @@ def generate_html_report(username, top_videos, date_str):
                 <div class="card-footer">
                     <span>Subido: {vid['created_at']}</span>
                     <div class="actions-group">
-                        <a href="{download_url}" class="btn-download" target="_blank" download="tiktok_{vid['id']}.mp4">⬇️ Descargar MP4</a>
+                        <a href="{download_url}" class="btn-download" target="_blank" rel="noopener noreferrer">⬇️ Descargar MP4</a>
                         <a href="{vid['url']}" class="btn-link" target="_blank">Ver en TikTok ↗</a>
                     </div>
                 </div>
@@ -131,15 +133,13 @@ def generate_html_report(username, top_videos, date_str):
 </body>
 </html>"""
 
-    # Guardar reporte histórico con fecha
     with open(filename_date, "w", encoding="utf-8") as f:
         f.write(html_template)
     
-    # Guardar como index.html para la portada de GitHub Pages
     with open(filename_index, "w", encoding="utf-8") as f:
         f.write(html_template)
     
-    print(f"Reporte generado exitosamente.")
+    print("Reporte generado con enlaces de descarga directa.")
 
 def get_top3_engagement_24h(username):
     print(f"Obteniendo videos de @{username}...")
