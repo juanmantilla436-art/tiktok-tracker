@@ -6,7 +6,7 @@ from apify_client import ApifyClient
 # ---------------------------------------------------------
 # CONFIGURACIÓN
 # ---------------------------------------------------------
-TARGET_USER = "picante.clips"  # Cuenta a monitorear (sin el @)
+TARGET_USER = "gabrielaclips2"  # Cuenta a monitorear (sin el @)
 
 APIFY_TOKEN = os.environ.get("APIFY_TOKEN")
 client = ApifyClient(APIFY_TOKEN)
