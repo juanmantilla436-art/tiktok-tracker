@@ -2,7 +2,7 @@ name: TikTok Tracker Automático
 
 on:
   schedule:
-    - cron: '30 4 * * *'  # 11:30 PM Hora Colombia (04:30 UTC)
+    - cron: '0 17 * * *'  # 12:00 PM Hora Colombia (17:00 UTC)
   workflow_dispatch:       # Permite ejecución manual
 
 jobs:
